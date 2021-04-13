@@ -1,7 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BlogController!{% endblock %}
+{% block title %}blog{% endblock %}
 
 {% block body %}
-<h1>this is the blog page</h1>
+<div class="container">
+    <section class="row mt-3">
+        {% for article in articles %}
+        <div class="col-md-6 ">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250 rounded shadow" style="max-width: 30rem;">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <strong class="d-inline-block mb-2 text-warning">{{ article.category.title }}</strong>
+                    <h3 class="mb-0">
+                        <h4>{{article.title}}</h4>
+                    </h3>
+                    <div class="mb-1 text-muted">{{ article.createdAt | date("d/m/Y") }}</div>
+                    <p class="card-text mb-auto">
+                        {{ article.content| raw|length > 50 ? article.content| raw|slice(0, 100) ~ '...' :
+                        article.content| raw }}
+                    </p>
+                    <a href="{{ path('blog_show', {'id': article.id}) }}">Read more</a>
+                </div>
+                <img class="card-img-right flex-auto d-none d-md-block" src="{{ article.image }}" alt="article image"
+                    style="width: 200px; height: 250px;" data-holder-rendered="true">
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+</div>
 {% endblock %}

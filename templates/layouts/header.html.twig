@@ -1,0 +1,35 @@
+<div class="container">
+  <nav class="navbar navbar-expand-md navbar-light">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+      <a class="navbar-brand" href="{{ path('home') }}">AMALION's BLOG</a>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+      aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse collapse w-100 dual-collapse2">
+      <ul class="navbar-nav nav navbar-righ ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('blog')}}">Articles
+          </a>
+        </li>
+        {% if not app.user %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('register') }}">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('login') }}">Login</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('blog_create') }}">Create an article</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('logout') }}">Logout</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+</div>

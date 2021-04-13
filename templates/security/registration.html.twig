@@ -1,0 +1,17 @@
+{% extends 'base.html.twig'%}
+
+{% block body %}
+<div class=" p-3 rounded shadow mt-4 w-50 mx-auto">
+    <h3>Create your account</h3>
+    {{ form_start(form) }}
+
+    {{ form_row(form.username, {'label': 'Name'}) }}
+    {{ form_row(form.email, {'label': 'Email Address'})}}
+    {{ form_row(form.password, {'label': 'Password'}) }}
+    {{ form_row(form.confirm_password, {'label': 'Confirm Password'})}}
+    <button type="submit" class="btn btn-success">
+        Register
+    </button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
