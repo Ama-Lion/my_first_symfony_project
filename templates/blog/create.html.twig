@@ -8,10 +8,10 @@
         <h3>Start writting Your article</h3>
         {% endif %}
         {{ form_start(formArticle)}}
-        {{ form_row(formArticle.title, {'attr': {'placeholder': "Titre de l'article"}}) }}
+        {{ form_row(formArticle.title, {'attr': {'placeholder': "Title of the article"}}) }}
         {{ form_row(formArticle.category) }}
-        {{ form_row(formArticle.content, {'attr': {'placeholder': "Contenu de l'article"}}) }}
-        {{ form_row(formArticle.image, {'attr': {'placeholder': "Image de l'article"}}) }}
+        {{ form_row(formArticle.content, {'attr': {'placeholder': "Content of the article"}}) }}
+        {{ form_row(formArticle.image, {'attr': {'placeholder': "Image Url of the article"}}) }}
         <button type="submit" class="btn btn-success">
             {% if editMode %}
             Enregistrer
