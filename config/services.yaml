@@ -6,6 +6,10 @@
 parameters:
 
 services:
+    app.post.voter:
+        class: App\Security\Voter\BlogPostVoter
+        tags:
+            -{ name: security.voter }
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
