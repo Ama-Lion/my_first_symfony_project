@@ -1,0 +1,35 @@
+{% extends 'base.html.twig'%}
+{% block body %}
+<div class="container mt-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+            <tr>
+                <th scope="row">{{category.id}}</th>
+                <td>{{category.title}}</td>
+                <td>{{category.description}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="container mt-5">
+    <div class=" p-3 rounded shadow">
+        <h3>Add Category</h3>
+        {{ form_start(formCategory)}}
+        {{ form_row(formCategory.title, {'attr': {'placeholder': "Title of the Category"}}) }}
+        {{ form_row(formCategory.description, {'attr': {'placeholder': "Description of the Category"}}) }}
+        <button type="submit" class="btn btn-success">
+            Save
+        </button>
+    </div>
+    {{ form_end(formCategory) }}
+</div>
+{% endblock %}

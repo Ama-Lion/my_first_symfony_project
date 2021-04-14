@@ -4,18 +4,20 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Comment;
+use App\Entity\Category;
 use App\Form\ArticleType;
 use App\Form\CommentType;
-use App\Repository\ArticleRepository;
 
+use App\Form\CategoryType;
+use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
+
 
 
 class BlogController extends AbstractController
@@ -180,6 +182,25 @@ class BlogController extends AbstractController
     $this->addFlash('deleteArticle', 'L\'article a bien étais supprimer');
 
     return $this->redirectToRoute('blog');
+    }
+
+    /**
+    * @Route("admin/create-category", name="create-category")
+    */
+    public function createCategory(Category $category = null, Request $request,  EntityManagerInterface $manager, CategoryRepository $repo){
+        $category = new Category();
+        $categories = $repo->findAll();
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $manager->persist($category);
+            $manager->flush();
+            return $this->redirectToRoute('create-category');
+        }
+        return $this->render('blog/create_category.html.twig', [
+            'formCategory' => $form->createView(),
+            'categories' => $categories,
+        ]);
     }
     
 }
