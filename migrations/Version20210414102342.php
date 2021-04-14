@@ -27,15 +27,14 @@ final class Version20210414102342 extends AbstractMigration
         $this->addSql('ALTER TABLE article ADD CONSTRAINT FK_23A0E6612469DE2 FOREIGN KEY (category_id) REFERENCES category (id)');
         $this->addSql('ALTER TABLE article ADD CONSTRAINT FK_23A0E667E3C61F9 FOREIGN KEY (owner_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE comment ADD CONSTRAINT FK_9474526C7294869C FOREIGN KEY (article_id) REFERENCES article (id)');
-        // $this->addSql('DROP TABLE test');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        // $this->addSql('ALTER TABLE comment DROP FOREIGN KEY FK_9474526C7294869C');
-        // $this->addSql('ALTER TABLE article DROP FOREIGN KEY FK_23A0E6612469DE2');
-        // $this->addSql('ALTER TABLE article DROP FOREIGN KEY FK_23A0E667E3C61F9');
+        $this->addSql('ALTER TABLE comment DROP FOREIGN KEY FK_9474526C7294869C');
+        $this->addSql('ALTER TABLE article DROP FOREIGN KEY FK_23A0E6612469DE2');
+        $this->addSql('ALTER TABLE article DROP FOREIGN KEY FK_23A0E667E3C61F9');
         $this->addSql('CREATE TABLE test (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, username VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, password VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
         $this->addSql('DROP TABLE article');
         $this->addSql('DROP TABLE category');
